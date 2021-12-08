@@ -144,10 +144,12 @@
     <ClCompile Include="Neuron.cpp" />
     <ClCompile Include="NN.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Functions.h" />
     <ClInclude Include="Layer.h" />
+    <ClInclude Include="Manager.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Neuron.h" />
   </ItemGroup>

@@ -70,7 +70,7 @@ void nn::backward(vector<double> gradient)
 		vector<double> gradientNext;
 		vector<double> der = layers[k + 1]->derivative();
 		for (int i = 0; i < layers[k + 1]->len; ++i)
-			gradient[i] *= der[i] * 0.01; //lr;
+			gradient[i] *= der[i] * lr;
 		
 		for (int i = 0; i < layers[k]->len; ++i)
 		{

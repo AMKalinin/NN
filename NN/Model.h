@@ -12,13 +12,13 @@ public:
 	virtual vector<double> init_w(int size) = 0;
 	virtual vector<double> forward(vector<double> X) = 0;
 	virtual void backward(vector<double> gradient) = 0;
+	double lr = 1;
 };
 
 class nn : public model
 {
 	public:
 		vector<layer*> layers;
-		double lr = 1;
 		nn() {};
 		void add_layers(layer * lay);
 		void compile();

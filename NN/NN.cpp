@@ -5,10 +5,12 @@
 #include "Neuron.h"
 #include "Layer.h"
 #include "Model.h"
+#include "Manager.h"
 
 int main()
 {
     sigmoida sigma;
+    SSE se;
     int a = 10;
     input_layer l(3);
     output_layer out(1,&sigma);
@@ -33,22 +35,31 @@ int main()
     vector<double> x3 = { 1, 0, 1 };
     vector<double> x4 = { 0, 1, 1 };
     vector<double> x5 = { 1, 0, 0 };
+    
+    vector<vector<double>> x_train = { x1,x2,x3,x4 };
 
     vector<double> y1 = {0};
     vector<double> y2 = {1};
     vector<double> y3 = {1};
     vector<double> y4 = {0};
+    vector<double> y5 = {1};
 
+    vector<vector<double>> y_train = { y1,y2,y3,y4 };
 
-    vector<double> grad = { 0 };
+    vector<vector<double>> x_test = {x5};
+    
+    vector<vector<double>> y_test = { y5 };
+
+    /*vector<double> grad = { 0 };
 
     vector<double> predict;
 
-    for (int i = 0; i < 10000; i++)
+    mod.lr = 0.01;
+    for (int i = 0; i <= 10000; i++)
     {
         std::cout << i << "\n";
         predict = mod.forward(x1);
-        grad[0] = 2 * ( predict[0]-y1[0]);
+        grad[0] = 2 * (predict[0] - y1[0]);
         mod.backward(grad);
 
         predict = mod.forward(x2);
@@ -64,9 +75,16 @@ int main()
         mod.backward(grad);
 
     };
-    
+
     predict = mod.forward(x5);
-    std::cout << predict[0];
+    std::cout << predict[0];*/
+
+
+    manager man(&mod, 0.01, &se);
+
+    man.fit(x_train, y_train, x_test, y_test, 10000);
+    
+    std::cout << mod.forward(x5)[0];
 
 }
 
