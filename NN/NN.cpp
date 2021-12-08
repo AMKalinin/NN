@@ -24,9 +24,9 @@ int main()
     mod.layers[1]->neurons[0]->w[1] = 0.44064899;
     mod.layers[1]->neurons[0]->w[2] = -0.99977125;
 
-    mod.layers[1]->neurons[0]->w[0] = 9.67299303;
+    /*mod.layers[1]->neurons[0]->w[0] = 9.67299303;
     mod.layers[1]->neurons[0]->w[1] = -0.2078435;
-    mod.layers[1]->neurons[0]->w[2] = -4.62963669;
+    mod.layers[1]->neurons[0]->w[2] = -4.62963669;*/
 
     vector<double> x1 = { 0, 0, 1 };
     vector<double> x2 = { 1, 1, 1 };
@@ -48,19 +48,19 @@ int main()
     {
         std::cout << i << "\n";
         predict = mod.forward(x1);
-        grad[0] = 2 * (y1[0] - predict[0]);
+        grad[0] = 2 * ( predict[0]-y1[0]);
         mod.backward(grad);
 
         predict = mod.forward(x2);
-        grad[0] = 2 * (y2[0] - predict[0]);
+        grad[0] = 2 * (predict[0] - y2[0]);
         mod.backward(grad);
 
         predict = mod.forward(x3);
-        grad[0] = 2 * (y3[0] - predict[0]);
+        grad[0] = 2 * (predict[0] - y3[0]);
         mod.backward(grad);
 
         predict = mod.forward(x4);
-        grad[0] = 2 * (y4[0] - predict[0]);
+        grad[0] = 2 * (predict[0] - y4[0]);
         mod.backward(grad);
 
     };

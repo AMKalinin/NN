@@ -44,8 +44,12 @@ public:
 };
 
 
-class output_neuron : public hide_neuron
+class output_neuron : public neuron
 {
 public:
+	function_activation* func;
+
 	output_neuron(function_activation* funct);
+	void activate();
+	double derivative();
 };
