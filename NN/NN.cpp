@@ -10,24 +10,63 @@ int main()
 {
     sigmoida sigma;
     int a = 10;
-    input_layer l(2);
-    hide_layer hide(2, &sigma);
-    output_layer out(2,&sigma);
+    input_layer l(3);
+    output_layer out(1,&sigma);
 
     nn mod;
 
     mod.add_layers(&l);
-    mod.add_layers(&hide);
     mod.add_layers(&out);
 
     mod.compile();
 
-    hide.neurons[0]->sum = 0.3;
-    hide.neurons[1]->sum = -15;
-    hide.activate();
-    vector<double> der = hide.derivative();
-    std::cout << der[0];
-    std::cout << der[1];
+    mod.layers[1]->neurons[0]->w[0] = -0.16595599;
+    mod.layers[1]->neurons[0]->w[1] = 0.44064899;
+    mod.layers[1]->neurons[0]->w[2] = -0.99977125;
+
+    mod.layers[1]->neurons[0]->w[0] = 9.67299303;
+    mod.layers[1]->neurons[0]->w[1] = -0.2078435;
+    mod.layers[1]->neurons[0]->w[2] = -4.62963669;
+
+    vector<double> x1 = { 0, 0, 1 };
+    vector<double> x2 = { 1, 1, 1 };
+    vector<double> x3 = { 1, 0, 1 };
+    vector<double> x4 = { 0, 1, 1 };
+    vector<double> x5 = { 1, 0, 0 };
+
+    vector<double> y1 = {0};
+    vector<double> y2 = {1};
+    vector<double> y3 = {1};
+    vector<double> y4 = {0};
+
+
+    vector<double> grad = { 0 };
+
+    vector<double> predict;
+
+    for (int i = 0; i < 10000; i++)
+    {
+        std::cout << i << "\n";
+        predict = mod.forward(x1);
+        grad[0] = 2 * (y1[0] - predict[0]);
+        mod.backward(grad);
+
+        predict = mod.forward(x2);
+        grad[0] = 2 * (y2[0] - predict[0]);
+        mod.backward(grad);
+
+        predict = mod.forward(x3);
+        grad[0] = 2 * (y3[0] - predict[0]);
+        mod.backward(grad);
+
+        predict = mod.forward(x4);
+        grad[0] = 2 * (y4[0] - predict[0]);
+        mod.backward(grad);
+
+    };
+    
+    predict = mod.forward(x5);
+    std::cout << predict[0];
 
 }
 

@@ -6,8 +6,8 @@ void input_layer::add_neurons()
 {
 	for (int i = 0; i <len; ++i)
 	{
-		input_neuron neu;
-		neurons.push_back(&neu);
+		input_neuron *neu = new input_neuron;
+		neurons.push_back(neu);
 	}
 };
 
@@ -16,8 +16,8 @@ void hide_layer::add_neurons()
 {
 	for (int i = 0; i < len; ++i)
 	{
-		hide_neuron neu(func);
-		neurons.push_back(&neu);
+		hide_neuron *neu = new hide_neuron(func);
+		neurons.push_back(neu);
 	}
 };
 
@@ -46,8 +46,8 @@ void output_layer::add_neurons()
 {
 	for (int i = 0; i < len; ++i)
 	{
-		output_neuron neu(func);
-		neurons.push_back(&neu);
+		output_neuron* neu = new output_neuron(func);
+		neurons.push_back(neu);
 	}
 };
 

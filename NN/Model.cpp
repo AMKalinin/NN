@@ -8,8 +8,6 @@ using std::vector;
 void nn::add_layers(layer* lay)
 {
 	layers.push_back(lay);
-	layers[0]->neurons[0]->out = 10;
-	std::cout << layers[0]->neurons[0]->out;
 };
 
 vector<double> nn::init_w(int size)
@@ -49,7 +47,7 @@ vector<double> nn::forward(vector<double> X)
 	{
 		for (int j = 0; j < layers[i]->len; ++j)
 		{
-			layers[i]->neurons[i]->sum = 0;
+			layers[i]->neurons[j]->sum = 0;
 			for (int k = 0; k < layers[i-1]->len; ++k)
 			{
 				layers[i]->neurons[j]->sum += layers[i-1]->neurons[k]->out * layers[i]->neurons[j]->w[k];
@@ -67,7 +65,7 @@ vector<double> nn::forward(vector<double> X)
 
 void nn::backward(vector<double> gradient)
 {
-	for (int k = layers.size() - 2; k > 0; --k)
+	for (int k = layers.size() - 2; k >= 0; --k)
 	{
 		vector<double> gradientNext;
 		vector<double> der = layers[k + 1]->derivative();
