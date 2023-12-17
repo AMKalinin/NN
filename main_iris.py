@@ -1,11 +1,11 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
 import nn
 from functions import *
 from layer import *
 from manager import *
 
-
-import pandas as pd
-from sklearn.model_selection import train_test_split
 
 df = pd.read_csv('Iris.csv')
 

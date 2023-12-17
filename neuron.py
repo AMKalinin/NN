@@ -1,4 +1,7 @@
+'''Модуль для описания нейрона входящего в состав слоя'''
+
 from functions import *
+
 
 class neuron:
     def __init__(self):

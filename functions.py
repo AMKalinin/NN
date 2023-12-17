@@ -1,5 +1,8 @@
+'''Модуль с функциями активации,производными и функциями потерь'''
+
 from math import exp
 from math import log
+
 
 class function_activation():
     def activate(self):
@@ -7,8 +10,6 @@ class function_activation():
 
     def derivative(self):
         pass
-
-
 
 class ReLU(function_activation):
     def __init__(self):
@@ -25,8 +26,6 @@ class ReLU(function_activation):
             return 0
         else:
             return 1
-
-
 
 class sigmoida(function_activation):
     def __init__(self):

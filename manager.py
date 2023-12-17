@@ -1,4 +1,7 @@
+'''Модуль для исследования процесса обучения'''
+
 from tqdm import tqdm
+
 
 class manager:
     def __init__(self, model, learning_rate, loss_function):

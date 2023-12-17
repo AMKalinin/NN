@@ -1,4 +1,7 @@
+'''модуль слоев модели'''
+
 from neuron import *
+
 
 class layer:
     def __init__(self, type, size):
